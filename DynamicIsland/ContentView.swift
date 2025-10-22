@@ -15,9 +15,7 @@ struct ContentView: View {
                 do {
                     deleteAllActivities()
                     
-                    let id = try LiveActivityManager.startActivity(arrivalTime: "15Mins", phoneNumber: "12345678", restaurantName: "McDonald's", customerAddress: "221b Baker Street")
-                    
-                    UserDefaultsManager.saveNewActivity(id: id, arrivalTime: "15Mins", phoneNumber: "12345678", restaurantName: "McDonald's", customerAddress: "211b Baker Street")
+                    let id = try LiveActivityManager.startActivity(arrivalTime: "15", phoneNumber: "87245202", restaurantName: "맘스터치", customerAddress: "서울 영등포구 여의대방로 9길 5", timeName: "24")
                     
                 } catch {
                     print(error.localizedDescription)

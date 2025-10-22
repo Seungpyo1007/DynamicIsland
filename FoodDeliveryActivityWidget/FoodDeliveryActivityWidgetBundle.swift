@@ -11,6 +11,6 @@ import SwiftUI
 @main
 struct FoodDeliveryActivityBundle: WidgetBundle {
     var body: some Widget {
-        FoodDeliveryActivity()
+        FoodDeliveryActivityWidget()
     }
 }

@@ -12,7 +12,7 @@ class LiveActivityManager {
     
     @discardableResult
     static func startActivity(arrivalTime: String, phoneNumber:
-    String, restaurantName: String, customerAddress: String)
+    String, restaurantName: String, customerAddress: String, timeName: String)
     throws -> String {
         
         var activity: Activity<FoodDeliveryAttributes>?
@@ -20,7 +20,7 @@ class LiveActivityManager {
         FoodDeliveryAttributes.ContentState(arrivalTime:
         arrivalTime, phoneNumber: phoneNumber,
         restaurantName: restaurantName, customerAddress:
-        customerAddress)
+        customerAddress, timeName: timeName)
     do {
         activity = try Activity.request(attributes:
             FoodDeliveryAttributes(), contentState:
@@ -45,7 +45,8 @@ class LiveActivityManager {
                 "arrivalTime" : $0.contentState.arrivalTime,
                 "phoneNumber" : $0.contentState.phoneNumber,
                 "restaurantName" : $0.contentState.restaurantName,
-                "customerAddress" : $0.contentState.customerAddress
+                "customerAddress" : $0.contentState.customerAddress,
+                "timeName" : $0.contentState.timeName
             ]
         }
     }
@@ -67,12 +68,12 @@ class LiveActivityManager {
     
     static func updateActivity(id: String, arrivalTime: String,
         phoneNumber: String, restaurantName: String,
-                               customerAddress: String) async {
+        timeName: String, customerAddress: String) async {
         
         let updatedContentState =
             FoodDeliveryAttributes.ContentState(arrivalTime:
             arrivalTime, phoneNumber: phoneNumber, restaurantName:
-            restaurantName, customerAddress: customerAddress)
+            restaurantName, customerAddress: customerAddress, timeName: timeName)
         
         let activity =
             Activity<FoodDeliveryAttributes>.activities

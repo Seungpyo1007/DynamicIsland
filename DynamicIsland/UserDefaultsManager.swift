@@ -48,7 +48,7 @@ struct UserDefaultsManager {
                     $0["arrivalTime"] ?? "", phoneNumber:
                     $0["phoneNumber"] ?? "", restaurantName:
                     $0["restaurantName"] ?? "", customerAddress:
-                    $0["customerAddress"] ?? "")
+                    $0["customerAddress"] ?? "", timeName: $0["timeName"] ?? "")
             })
     }
 }
