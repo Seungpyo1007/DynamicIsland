@@ -1,88 +1,67 @@
 //
-//  LiveActivityManager.swift
-//  DynamicIsland
+// LiveActivityManager.swift
+// DynamicIsland
 //
-//  Created by 홍승표 on 10/21/25.
+// Created by 홍승표 on 10/21/25.
 //
 
 import Foundation
 import ActivityKit
 
-class LiveActivityManager {
+// MARK: - Live Activity Manager Error
+enum LiveActivityErrorType: Error {
+    case failedToGetID
+}
+
+// MARK: - LiveActivityManager
+final class LiveActivityManager {
+    
+    // Live Activity의 초기/업데이트 상태 생성
+    private static func createContentState(deliveryTime: Date) -> FoodDeliveryAttributes.ContentState {
+        return FoodDeliveryAttributes.ContentState(deliveryTime: deliveryTime)
+    }
     
     @discardableResult
-    static func startActivity(arrivalTime: String, phoneNumber:
-    String, restaurantName: String, customerAddress: String, timeName: String)
-    throws -> String {
-        
+    static func startActivity(deliveryTime: Date) throws -> String {
         var activity: Activity<FoodDeliveryAttributes>?
-        let initialState =
-        FoodDeliveryAttributes.ContentState(arrivalTime:
-        arrivalTime, phoneNumber: phoneNumber,
-        restaurantName: restaurantName, customerAddress:
-        customerAddress, timeName: timeName)
-    do {
-        activity = try Activity.request(attributes:
-            FoodDeliveryAttributes(), contentState:
-            initialState, pushType: nil)
         
-        guard let id = activity?.id else { throw
-                LiveActivityErrorType.failedToGetID }
+        let initialState = createContentState(deliveryTime: deliveryTime)
+        
+        do {
+            activity = try Activity.request(
+                attributes: FoodDeliveryAttributes(),
+                contentState: initialState,
+                pushType: nil
+            )
+            
+            guard let id = activity?.id else { throw LiveActivityErrorType.failedToGetID }
             return id
         } catch {
             throw error
         }
     }
     
-    static func listAllActivities() -> [[String:String]] {
-        let sortedActivities =
-            Activity<FoodDeliveryAttributes>.activities.sorted{
-            $0.id > $1.id}
-        
-        return sortedActivities.map {
-            [
-                "id": $0.id,
-                "arrivalTime" : $0.contentState.arrivalTime,
-                "phoneNumber" : $0.contentState.phoneNumber,
-                "restaurantName" : $0.contentState.restaurantName,
-                "customerAddress" : $0.contentState.customerAddress,
-                "timeName" : $0.contentState.timeName
-            ]
-        }
-    }
+    // 모든 활성화된 Live Activity 종료
+//    static func endAllActivities() async {
+//        for activity in Activity<FoodDeliveryAttributes>.activities {
+//            await activity.end(dismissalPolicy: .immediate)
+//        }
+//    }
     
-    static func endAllActivities() async {
-        for activity in Activity<FoodDeliveryAttributes>.activities
-        {
-            await activity.end(dismissalPolicy: .immediate)
-        }
-    }
-    
+    // 특정 Live Activity 종료
     static func endActivity(_ id: String) async {
-        await
-            Activity<FoodDeliveryAttributes>.activities
-            .first(where: {
-                $0.id == id
-            })?.end(dismissalPolicy: .immediate)
+        await Activity<FoodDeliveryAttributes>.activities
+            .first(where: { $0.id == id })?
+            .end(dismissalPolicy: .immediate)
     }
     
-    static func updateActivity(id: String, arrivalTime: String,
-        phoneNumber: String, restaurantName: String,
-        timeName: String, customerAddress: String) async {
-        
-        let updatedContentState =
-            FoodDeliveryAttributes.ContentState(arrivalTime:
-            arrivalTime, phoneNumber: phoneNumber, restaurantName:
-            restaurantName, customerAddress: customerAddress, timeName: timeName)
-        
-        let activity =
-            Activity<FoodDeliveryAttributes>.activities
-            .first(where: { $0.id == id})
-        
-        await activity?.update(using: updatedContentState)
-    }
-}
-
-enum LiveActivityErrorType: Error {
-    case failedToGetID
+    // Live Activity 업데이트
+//    static func updateActivity(id: String, deliveryTime: Date) async {
+//        let updatedContentState = createContentState(deliveryTime: deliveryTime)
+//        
+//        let activity = Activity<FoodDeliveryAttributes>.activities
+//            .first(where: { $0.id == id })
+//        
+//        await activity?.update(using: updatedContentState)
+//    }
 }

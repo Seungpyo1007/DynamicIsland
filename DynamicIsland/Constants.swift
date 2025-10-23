@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-let LightYellow = Color("LightYellow")
-let LightGray = Color("LightGray")
-let LightMint = Color("LightMint")
+let lightYellow = Color("lightYellow")
+let lightMint = Color("lightMint")
 let icon = Image("icon")

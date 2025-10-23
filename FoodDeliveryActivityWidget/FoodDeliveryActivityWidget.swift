@@ -5,7 +5,8 @@ struct FoodDeliveryActivityWidget: Widget {
     
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: FoodDeliveryAttributes.self) { context in
-            // MARK: - Live Activity Content (Lock Screen/Home Screen)
+            
+            // MARK: - Live Activity Content (홈)
             VStack {
                 HStack {
                     Image("icon")
@@ -21,13 +22,19 @@ struct FoodDeliveryActivityWidget: Widget {
                         .foregroundColor(.mint)
                         .padding(15)
                 }
-                Text("\(context.state.arrivalTime)시 \(context.state.timeName)분 도착 예정")
-                    .font(.system(size: 25, weight: .heavy))
-                    .foregroundColor(.mint)
-                Text("\(context.state.restaurantName)")
+                HStack(spacing: 4) {
+                    DeliveryTimeView(context: context)
+                    Text("도착 예정")
+                        .font(.system(size: 25, weight: .heavy))
+                        .foregroundColor(.mint)
+                }
+                
+                Text("맘스터치")
                     .font(.system(size: 12))
                     .foregroundColor(.mint)
+                
                 Spacer()
+                
                 ProgressView(value: 0.5, total: 1.0)
                     .progressViewStyle(.linear)
                     .foregroundStyle(.mint)
@@ -36,26 +43,6 @@ struct FoodDeliveryActivityWidget: Widget {
             
         } dynamicIsland: { context in
             DynamicIsland {
-//              DynamicIslandExpandedRegion(.leading) {
-//                  HStack {
-//                      VStack(alignment: .leading, spacing: 2) {
-//                          HStack {
-//                              Image("icon")
-//                                  .resizable()
-//                                  .aspectRatio(contentMode: .fit)
-//                                  .frame(width: 30, height: 30)
-//                              Text("배달의민족")
-//                                  .font(.system(size: 17))
-//                          }
-//                      }
-//                  }
-//
-//              }
-//              DynamicIslandExpandedRegion(.trailing) {
-//                  Text("접수완료")
-//                      .font(.system(size: 15, weight: .regular))
-//                      .foregroundColor(.white)
-//              }
                 DynamicIslandExpandedRegion(.center) {
                     HStack {
                         VStack(alignment: .leading, spacing: 2) {
@@ -70,17 +57,22 @@ struct FoodDeliveryActivityWidget: Widget {
                             
                             Spacer()
                             
-                            Text("\(context.state.arrivalTime)시 \(context.state.timeName)분 도착 예정")
-                                .font(.system(size: 25, weight: .heavy))
-                                .foregroundColor(.white)
-                            Text("\(context.state.restaurantName)")
+                            HStack(spacing: 4) {
+                                DeliveryTimeView(context: context, font: .system(size: 25, weight: .heavy))
+                                    .foregroundColor(.white)
+                                Text("도착 예정")
+                                    .font(.system(size: 25, weight: .heavy))
+                                    .foregroundColor(.white)
+                            }
+                            
+                            Text("맘스터치")
                                 .font(.system(size: 12))
                                 .foregroundColor(.white)
                             
                             Spacer()
                         }
                         
-                            Spacer()
+                        Spacer()
                         
                         HStack {
                             VStack {
@@ -98,17 +90,6 @@ struct FoodDeliveryActivityWidget: Widget {
                         }
                     }
                 }
-//                DynamicIslandExpandedRegion(.bottom) {
-//                    VStack {
-//                        Spacer()
-//                        ProgressView(value: 0.5, total: 1.0)
-//                            .progressViewStyle(.linear)
-//                            .foregroundStyle(.mint)
-//                        
-//                    }
-//                }
-//                
-//----------------------------------------------------------------------------------------------------------------
                 
             } compactLeading: {
                 HStack(spacing: 4) {
@@ -119,8 +100,7 @@ struct FoodDeliveryActivityWidget: Widget {
                 }
                 .foregroundColor(.white)
             } compactTrailing: {
-                Text("\(context.state.timeName)분")
-                    .foregroundColor(.mint)
+                DeliveryTimeCompactView(context: context)
             } minimal: {
                 Image("icon")
                     .resizable()
