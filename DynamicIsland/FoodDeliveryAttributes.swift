@@ -12,14 +12,10 @@ struct FoodDeliveryAttributes: ActivityAttributes {
     
     public typealias ContentState = FoodDeliveryContentState
     
-    // Live Activity의 동적 상태 (시계 갱신 기준 시간만 남김)
+    // Live Activity 시작 시간
+    let startTime: Date
+    
+    // Live Activitiy가 ContentState가 무조건 필요하다고 해서 ㅠ
     struct FoodDeliveryContentState: Codable, Hashable {
-        
-        // 시계 갱신의 기준이 되는 시간 (Date 타입)
-        var deliveryTime: Date
-        
-        init(deliveryTime: Date = Date()) {
-            self.deliveryTime = deliveryTime
-        }
     }
 }

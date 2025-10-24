@@ -6,39 +6,35 @@
 import SwiftUI
 import ActivityKit
 import WidgetKit
-import Combine
 
+// MARK: - (큰 폰트)
 struct DeliveryTimeView: View {
     var context: ActivityViewContext<FoodDeliveryAttributes>
     var font: Font = .system(size: 25, weight: .heavy)
     
-    @State private var currentTime = Date()
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    private var endTime: Date {
+        context.attributes.startTime.addingTimeInterval(15 * 60)
+    }
     
     var body: some View {
-        Text(currentTime, style: .time)
+        Text(endTime, style: .time)
             .font(font)
             .foregroundColor(.mint)
             .monospacedDigit()
-            .onReceive(timer) { _ in
-                currentTime = Date()
-            }
     }
 }
 
-// MARK: - Compact View용 (작은 폰트)
+// MARK: - (작은 폰트) Compact View 전용
 struct DeliveryTimeCompactView: View {
     var context: ActivityViewContext<FoodDeliveryAttributes>
     
-    @State private var currentTime = Date()
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    private var endTime: Date {
+        context.attributes.startTime.addingTimeInterval(15 * 60)
+    }
     
     var body: some View {
-        Text(currentTime, style: .time)
+        Text(endTime, style: .time)
             .foregroundColor(.mint)
             .monospacedDigit()
-            .onReceive(timer) { _ in
-                currentTime = Date()
-            }
     }
 }

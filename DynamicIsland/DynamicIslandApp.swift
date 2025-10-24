@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// MARK: - ContentView를 Main UI에
 @main
 struct DynamicIslandApp: App {
     var body: some Scene {

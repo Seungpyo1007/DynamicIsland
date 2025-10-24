@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// 색
 let lightYellow = Color("lightYellow")
 let lightMint = Color("lightMint")
 let icon = Image("icon")
