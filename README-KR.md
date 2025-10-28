@@ -54,7 +54,7 @@ git checkout mcdonalds
 ## 🛠️ 기술 스택
 
 - **Language**: Swift
-- **Framework**: SwiftUI
+- **Framework**: SwiftUI, UIKit, WidgetKit, ActivityKit
 - **IDE**: Xcode
 - **Minimum iOS Version**: iOS 16.0+
 - **Recommended Device**: iPhone 14 Pro 이상 (Dynamic Island 지원 기기)
