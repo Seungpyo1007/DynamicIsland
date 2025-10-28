@@ -54,7 +54,7 @@ git checkout mcdonalds
 ## 🛠️ Tech Stack
 
 - **Language**: Swift
-- **Framework**: SwiftUI
+- **Framework**: SwiftUI, WidgetKit, ActivityKit
 - **IDE**: Xcode
 - **Minimum iOS Version**: iOS 16.0+
 - **Recommended Device**: iPhone 14 Pro or later (Dynamic Island supported devices)
