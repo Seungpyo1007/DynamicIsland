@@ -13,10 +13,14 @@ iOS의 Dynamic Island UI를 다양한 브랜드 스타일로 구현한 클론 �
 ### `bemin` - 배달의민족 스타일
 - 배달의민족 앱의 UI/UX를 Dynamic Island에 적용
 - 주문 진행 상태, 배달 현황 등을 Dynamic Island로 표현
+<img width="296" height="640" alt="Image" src="https://github.com/user-attachments/assets/f58e7fee-1081-42cd-9a65-0e7fd6501795" />
+<img width="296" height="640" alt="Image" src="https://github.com/user-attachments/assets/a0b941de-59af-49f5-a141-cfc83cda501f" />
 
 ### `mcdonalds` - 맥도날드 스타일
 - 맥도날드 브랜드 컬러와 디자인 시스템 적용
 - 주문 상태, 픽업 알림 등을 Dynamic Island로 구현
+<img width="296" height="640" alt="Image" src="https://github.com/user-attachments/assets/a22a2230-52d0-42b5-9b51-b5130e06c40d" />
+<img width="296" height="640" alt="Image" src="https://github.com/user-attachments/assets/1c15b7e1-c11c-49d9-ac33-5fdb05f4fbce" />
 
 ## 🚀 시작하기
 
